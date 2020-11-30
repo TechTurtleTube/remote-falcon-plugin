@@ -14,8 +14,14 @@ $remoteFppEnabled = urldecode($pluginSettings['remote_fpp_enabled']);
 $remoteFppEnabled = $remoteFppEnabled == "true" ? true : false;
 
 if($remoteFppEnabled == 1) {
-  echo "Starting Remote Falcon Plugin v" . $pluginVersion . "\n";
-  logEntry("Starting Remote Falcon Plugin v" . $pluginVersion);
+  echo getenv('HTTP_HOST');
+  if($baseUrl == "https://remotefalcon.me") {
+    echo "Starting Remote Falcon Plugin v" . $pluginVersion . " using Test\n";
+    logEntry("Starting Remote Falcon Plugin v" . $pluginVersion . " using Test");
+  }else {
+    echo "Starting Remote Falcon Plugin v" . $pluginVersion . " using Production\n";
+    logEntry("Starting Remote Falcon Plugin v" . $pluginVersion . " using Production");
+  }
 
   $remoteToken = urldecode($pluginSettings['remoteToken']);
   $remotePlaylist = urldecode($pluginSettings['remotePlaylist']);
